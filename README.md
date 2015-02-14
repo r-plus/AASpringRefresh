@@ -1,5 +1,10 @@
-AASpringRefresh
-===============
+# AASpringRefresh
+==========
+
+[![CI Status](https://travis-ci.org/r-plus/AASpringRefresh.svg?branch=master)](https://travis-ci.org/r-plus/AASpringRefresh)
+[![Version](https://img.shields.io/cocoapods/v/AASpringRefresh.svg?style=flat)](http://cocoadocs.org/docsets/AASpringRefresh)
+[![License](https://img.shields.io/cocoapods/l/AASpringRefresh.svg?style=flat)](http://cocoadocs.org/docsets/AASpringRefresh)
+[![Platform](https://img.shields.io/cocoapods/p/AASpringRefresh.svg?style=flat)](http://cocoadocs.org/docsets/AASpringRefresh)
 
 All around Unread.app like pull to refresh library.
 
