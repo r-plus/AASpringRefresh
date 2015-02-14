@@ -40,4 +40,4 @@ You can customize below properties.
     springRefresh.show = NO; // dynamic show/hide affordanceView and add/remove KVO observer.
 
 ## LICENSE
-MIT
+MIT License
