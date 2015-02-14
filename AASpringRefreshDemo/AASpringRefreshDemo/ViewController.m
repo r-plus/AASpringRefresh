@@ -34,7 +34,7 @@
     self.textView.textColor = [UIColor darkGrayColor];
     self.textView.editable = NO;
     self.textView.text = @"AASpringRefresh\n\n AASpringRefresh is Unread.app like pull-to-refresh library that can put to 4 direction (top/bottom/left/right).\n\n License under the MIT License.";
-    self.textView.backgroundColor = [UIColor lightGrayColor];
+    //self.textView.backgroundColor = [UIColor lightGrayColor];
     [self.scrollView addSubview:self.textView];
     
     // top
@@ -52,9 +52,9 @@
     AASpringRefresh *left = [self.scrollView addSpringRefreshPosition:AASpringRefreshPositionLeft actionHandler:^ {
         NSLog(@"left");
     }];
-    left.unExpandedColor = UIColor.greenColor;
-    left.expandedColor = UIColor.blueColor;
-    left.readyColor = UIColor.orangeColor;
+    left.unExpandedColor = [UIColor colorWithRed:0.80 green:0.93 blue:0.93 alpha:1.0];
+    left.expandedColor = [UIColor colorWithRed:0.50 green:0.81 blue:1.00 alpha:1.0];
+    left.readyColor = [UIColor colorWithRed:0.00 green:0.42 blue:1.00 alpha:1.0];
     // right
     AASpringRefresh *right = [self.scrollView addSpringRefreshPosition:AASpringRefreshPositionRight actionHandler:^ {
         NSLog(@"right");

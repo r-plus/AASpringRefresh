@@ -3,6 +3,8 @@ AASpringRefresh
 
 All around Unread.app like pull to refresh library.
 
+![DemoGif](http://i.gyazo.com/b1199ff068d131379c4e1e7d13aafeb5.gif)
+
 ## Requirement
 - ARC.
 - iOS 7 or higher.
