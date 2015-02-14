@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>AASpringRefreshDemo.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>libAASpringRefresh.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0A9AC5021A8DDA2D00A88DC7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0A9AC51B1A8DDA2E00A88DC7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0A9AC52F1A8DDA6700A88DC7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0A9AC5391A8DDA6700A88DC7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
