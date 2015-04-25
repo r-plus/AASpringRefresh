@@ -90,7 +90,7 @@
         case AASpringRefreshPositionTop: {
             CGRect frame = CGRectMake(CGRectGetMidX(self.scrollView.bounds) - (self.size.width / 2.0), -self.affordanceMargin, self.size.width, self.size.height);
             if (self.text) {
-                self.label.frame = CGRectMake(0.0, 0.0, self.scrollView.frame.size.width, 15.0);
+                self.label.frame = CGRectMake(0.0, -20.0, self.scrollView.frame.size.width, 15.0);
                 //frame.origin.y -= 10.0;
             }
             self.frame = frame;
@@ -178,9 +178,9 @@
         case AASpringRefreshPositionTop: {
             self.progress = (-yOffset - self.offsetMargin) / CGRectGetHeight(self.bounds);
             if (self.text) {
-                CGPoint center = self.label.center;
-                center.y = -(yOffset / 6.0);
-                self.label.center = center;
+                //CGPoint center = self.label.center;
+                //center.y = -(yOffset / 6.0);
+                //self.label.center = center;
                 self.label.alpha = -(yOffset / CGRectGetHeight(self.bounds));
             }
             break;
@@ -192,9 +192,9 @@
             }
             self.progress = (overBottomOffsetY - self.offsetMargin) / CGRectGetHeight(self.bounds);
             if (self.text) {
-                CGPoint center = self.label.center;
-                center.y = MAX(self.scrollView.bounds.size.height, self.scrollView.contentSize.height) - (overBottomOffsetY / 6.0);
-                self.label.center = center;
+                //CGPoint center = self.label.center;
+                //center.y = MAX(self.scrollView.bounds.size.height, self.scrollView.contentSize.height) - (overBottomOffsetY / 6.0);
+                //self.label.center = center;
                 self.label.alpha = overBottomOffsetY / CGRectGetHeight(self.bounds);
             }
             break;
@@ -275,9 +275,11 @@
 {
     _text = text;
     if (text.length && (self.position == AASpringRefreshPositionTop || self.position == AASpringRefreshPositionBottom)) {
+        self.affordanceMargin = self.affordanceMargin + 20.0;
         self.label.text = text;
         [self.scrollView addSubview:self.label];
     } else {
+        self.affordanceMargin = self.affordanceMargin - 20.0;
         [self.label removeFromSuperview];
     }
     [self setNeedsLayout];
