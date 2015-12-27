@@ -38,25 +38,25 @@
     [self.scrollView addSubview:self.textView];
     
     // top
-    AASpringRefresh *top = [self.scrollView addSpringRefreshPosition:AASpringRefreshPositionTop actionHandler:^ {
+    AASpringRefresh *top = [self.scrollView addSpringRefreshPosition:AASpringRefreshPositionTop actionHandler:^(AASpringRefresh *v) {
         NSLog(@"top");
     }];
     top.text = @"REFRESH";
     // bottom
-    AASpringRefresh *bottom = [self.scrollView addSpringRefreshPosition:AASpringRefreshPositionBottom actionHandler:^ {
+    AASpringRefresh *bottom = [self.scrollView addSpringRefreshPosition:AASpringRefreshPositionBottom actionHandler:^(AASpringRefresh *v) {
         NSLog(@"bottom");
     }];
     bottom.size = CGSizeMake(120.0, 40.0);
     bottom.text = @"Size property customized";
     // left
-    AASpringRefresh *left = [self.scrollView addSpringRefreshPosition:AASpringRefreshPositionLeft actionHandler:^ {
+    AASpringRefresh *left = [self.scrollView addSpringRefreshPosition:AASpringRefreshPositionLeft actionHandler:^(AASpringRefresh *v) {
         NSLog(@"left");
     }];
     left.unExpandedColor = [UIColor colorWithRed:0.80 green:0.93 blue:0.93 alpha:1.0];
     left.expandedColor = [UIColor colorWithRed:0.50 green:0.81 blue:1.00 alpha:1.0];
     left.readyColor = [UIColor colorWithRed:0.00 green:0.42 blue:1.00 alpha:1.0];
     // right
-    AASpringRefresh *right = [self.scrollView addSpringRefreshPosition:AASpringRefreshPositionRight actionHandler:^ {
+    AASpringRefresh *right = [self.scrollView addSpringRefreshPosition:AASpringRefreshPositionRight actionHandler:^(AASpringRefresh *v) {
         NSLog(@"right");
     }];
     right.borderThickness = 2.0;
