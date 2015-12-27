@@ -32,6 +32,7 @@ typedef NS_ENUM(NSUInteger, AASpringRefreshPosition) {
 @property (nonatomic, assign, readonly) CGFloat progress;
 @property (nonatomic, assign, readonly) AASpringRefreshPosition position;
 
+-(void)setObserver:(BOOL)add;
 @end
 
 @interface UIScrollView (AASpringRefresh)

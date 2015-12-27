@@ -64,6 +64,10 @@
         _label.textAlignment = NSTextAlignmentCenter;
         _label.font = [UIFont fontWithName:@"AvenirNext-Regular" size:12.0];
         _label.alpha = 0.0;
+        // for safari.
+        if (position == AASpringRefreshPositionBottom) {
+            self.alpha = 0.0;
+        }
         
         AASpringExpandView *springExpandView1 = [[AASpringExpandView alloc] initWithFrame:CGRectZero];
         springExpandView1.isSidePosition = isSidePosition;
@@ -281,6 +285,22 @@
             [self.scrollView removeObserver:self forKeyPath:@"frame"];
             _showed = NO;
         }
+    }
+}
+
+// for Sleipnizer only!
+- (void)setObserver:(BOOL)add
+{
+    if (!_showed && add) {
+        [self.scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
+        [self.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew context:nil];
+        [self.scrollView addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+        _showed = YES;
+    } else if (_showed && !add) {
+        [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
+        [self.scrollView removeObserver:self forKeyPath:@"contentSize"];
+        [self.scrollView removeObserver:self forKeyPath:@"frame"];
+        _showed = NO;
     }
 }
 
