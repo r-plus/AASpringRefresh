@@ -291,15 +291,18 @@
 
 - (void)setText:(NSString *)text
 {
-    _text = text;
     if (text.length && (self.position == AASpringRefreshPositionTop || self.position == AASpringRefreshPositionBottom)) {
-        self.affordanceMargin = self.affordanceMargin + 20.0;
+        // dont add multiple margin per change text.
+        if (!self.text)
+            self.affordanceMargin = self.affordanceMargin + 20.0;
         self.label.text = text;
-        [self.scrollView addSubview:self.label];
+        [self addSubview:self.label];
     } else {
-        self.affordanceMargin = self.affordanceMargin - 20.0;
+        if (self.text)
+            self.affordanceMargin = self.affordanceMargin - 20.0;
         [self.label removeFromSuperview];
     }
+    _text = text;
     [self setNeedsLayout];
 }
 @end
