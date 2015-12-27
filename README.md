@@ -24,7 +24,7 @@ Add `pod 'AASpringRefresh'` to your Podfile.
 
     #import "AASpringRefresh.h"
     ...
-    AASpringRefresh *springRefresh = [self.scrollView addSpringRefreshPosition:AASpringRefreshPositionTop actionHandler:^() {
+    AASpringRefresh *springRefresh = [self.scrollView addSpringRefreshPosition:AASpringRefreshPositionTop actionHandler:^(AASpringRefresh *v) {
         // do something...
     }];
     
@@ -39,6 +39,7 @@ You can customize below properties.
     springRefresh.borderThickness = 6.0;
     springRefresh.affordanceMargin = 10.0; // to adjust space between scrollView edge and affordanceView.
     springRefresh.offsetMargin = 30.0; // to adjust threshold of offset.
+    springRefresh.threshold = 60.0;  // default is width or height of size.
     springRefresh.size = CGSizeMake(60.0, 40.0); // to adjust expanded size and each interval space.
     springRefresh.show = NO; // dynamic show/hide affordanceView and add/remove KVO observer.
 
