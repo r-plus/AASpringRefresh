@@ -56,6 +56,7 @@
         _borderThickness = 6.0;
         _offsetMargin = 30.0;
         _affordanceMargin = 10.0;
+        _threshold = 0;
         _text = nil;
         _size = (isSidePosition ? CGSizeMake(40.0, 60.0) : CGSizeMake(60.0, 40.0));
         _label = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -176,35 +177,52 @@
     
     switch (self.position) {
         case AASpringRefreshPositionTop: {
-            self.progress = (-yOffset - self.offsetMargin) / CGRectGetHeight(self.bounds);
+            CGFloat threshold = self.threshold != 0 ? self.threshold : CGRectGetHeight(self.bounds);
+            self.progress = (-yOffset - self.offsetMargin - self.scrollView.contentInset.top) / threshold;
             if (self.text) {
                 //CGPoint center = self.label.center;
                 //center.y = -(yOffset / 6.0);
                 //self.label.center = center;
-                self.label.alpha = -(yOffset / CGRectGetHeight(self.bounds));
+                self.label.alpha = (-yOffset - self.scrollView.contentInset.top) / 40.0;
             }
             break;
         }
         case AASpringRefreshPositionBottom: {
             CGFloat overBottomOffsetY = yOffset;
+            CGFloat threshold = self.threshold != 0 ? self.threshold : CGRectGetHeight(self.bounds);
             if (self.scrollView.contentSize.height > self.scrollView.frame.size.height) {
                 overBottomOffsetY += - self.scrollView.contentSize.height + self.scrollView.frame.size.height;
-            }
-            self.progress = (overBottomOffsetY - self.offsetMargin) / CGRectGetHeight(self.bounds);
-            if (self.text) {
-                //CGPoint center = self.label.center;
-                //center.y = MAX(self.scrollView.bounds.size.height, self.scrollView.contentSize.height) - (overBottomOffsetY / 6.0);
-                //self.label.center = center;
-                self.label.alpha = overBottomOffsetY / CGRectGetHeight(self.bounds);
+                self.progress = (overBottomOffsetY - self.offsetMargin - self.scrollView.contentInset.bottom) / threshold;
+                if (self.text) {
+                    //CGPoint center = self.label.center;
+                    //center.y = MAX(self.scrollView.bounds.size.height, self.scrollView.contentSize.height) - (overBottomOffsetY / 6.0);
+                    //self.label.center = center;
+                    self.label.alpha = (overBottomOffsetY - self.scrollView.contentInset.bottom) / threshold;
+                }
+            } else {
+                // have not scroll necessary height page on safari.
+
+                // default is -64.0. bottom inset is 44.0;
+                overBottomOffsetY += 20.0 + self.scrollView.contentInset.bottom;
+                self.progress = (overBottomOffsetY - self.offsetMargin) / threshold;
+                if (self.text) {
+                    //CGPoint center = self.label.center;
+                    //center.y = MAX(self.scrollView.bounds.size.height, self.scrollView.contentSize.height) - (overBottomOffsetY / 6.0);
+                    //self.label.center = center;
+                    self.label.alpha = (overBottomOffsetY) / threshold;
+                }
             }
             break;
         }
-        case AASpringRefreshPositionLeft:
-            self.progress = (-xOffset - self.offsetMargin) / CGRectGetWidth(self.bounds);
+        case AASpringRefreshPositionLeft: {
+            CGFloat threshold = self.threshold != 0 ? self.threshold : CGRectGetWidth(self.bounds);
+            self.progress = (-xOffset - self.offsetMargin) / threshold;
             break;
+        }
         case AASpringRefreshPositionRight: {
             CGFloat rightEdgeOffset = self.scrollView.contentSize.width - self.scrollView.bounds.size.width;
-            self.progress = MAX((xOffset - rightEdgeOffset - self.offsetMargin) / CGRectGetWidth(self.bounds), 0.0);
+            CGFloat threshold = self.threshold != 0 ? self.threshold : CGRectGetWidth(self.bounds);
+            self.progress = (xOffset - rightEdgeOffset - self.offsetMargin) / threshold;
             break;
         }
         default:
