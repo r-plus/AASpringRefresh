@@ -24,7 +24,7 @@
 
 @implementation UIScrollView (AASpringRefresh)
 - (AASpringRefresh *)addSpringRefreshPosition:(AASpringRefreshPosition)position
-                                actionHandler:(void (^)(void))handler
+                                actionHandler:(void (^)(AASpringRefresh *springRefresh))handler
 {
     // Don't add two instance to same position.
     for (UIView *v in self.subviews) {
@@ -168,7 +168,7 @@
     // Do Action prev progress value.
     if (self.isUserAction && !self.scrollView.dragging && !self.scrollView.isZooming && self.progress > 0.99) {
         if (self.pullToRefreshHandler) {
-            self.pullToRefreshHandler();
+            self.pullToRefreshHandler(self);
         }
     }
     

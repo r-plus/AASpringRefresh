@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, AASpringRefreshPosition) {
 @property (nonatomic, assign) CGFloat threshold; // default is width or height of size.
 @property (nonatomic, assign) CGSize size; // to adjust expanded size and each interval space.
 @property (nonatomic, assign, getter=isShowed) BOOL showed; // dynamic show/hide affordanceView and add/remove KVO observer.
-@property (nonatomic, copy) void (^pullToRefreshHandler)(void);
+@property (nonatomic, copy) void (^pullToRefreshHandler)(AASpringRefresh *springRefresh);
 @property (nonatomic, assign, readonly) CGFloat progress;
 @property (nonatomic, assign, readonly) AASpringRefreshPosition position;
 
@@ -36,5 +36,5 @@ typedef NS_ENUM(NSUInteger, AASpringRefreshPosition) {
 
 @interface UIScrollView (AASpringRefresh)
 - (AASpringRefresh *)addSpringRefreshPosition:(AASpringRefreshPosition)position
-                                        actionHandler:(void (^)(void))handler;
+                                actionHandler:(void (^)(AASpringRefresh *springRefresh))handler;
 @end
