@@ -25,6 +25,7 @@ typedef NS_ENUM(NSUInteger, AASpringRefreshPosition) {
 @property (nonatomic, assign) CGFloat borderThickness; // default: 6.0.
 @property (nonatomic, assign) CGFloat affordanceMargin; // default: 10.0. to adjust space between scrollView edge and affordanceView.
 @property (nonatomic, assign) CGFloat offsetMargin; // default: 30.0. to adjust threshold of offset.
+@property (nonatomic, assign) CGFloat threshold; // default is width or height of size.
 @property (nonatomic, assign) CGSize size; // to adjust expanded size and each interval space.
 @property (nonatomic, assign, getter=isShowed) BOOL showed; // dynamic show/hide affordanceView and add/remove KVO observer.
 @property (nonatomic, copy) void (^pullToRefreshHandler)(void);
