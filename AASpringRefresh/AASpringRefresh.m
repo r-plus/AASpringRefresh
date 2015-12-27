@@ -91,18 +91,22 @@
         case AASpringRefreshPositionTop: {
             CGRect frame = CGRectMake(CGRectGetMidX(self.scrollView.bounds) - (self.size.width / 2.0), -self.affordanceMargin, self.size.width, self.size.height);
             if (self.text) {
-                self.label.frame = CGRectMake(0.0, -20.0, self.scrollView.frame.size.width, 15.0);
+                self.label.frame = CGRectMake((-self.scrollView.bounds.size.width+self.size.width)/2.0, 5.0, self.scrollView.frame.size.width, 15.0);
                 //frame.origin.y -= 10.0;
             }
             self.frame = frame;
             break;
         }
         case AASpringRefreshPositionBottom: {
-            CGFloat y = MAX(self.scrollView.contentSize.height, self.scrollView.bounds.size.height);
+            CGFloat y = self.scrollView.contentSize.height;
+/*            CGFloat y = MAX(self.scrollView.contentSize.height, self.scrollView.bounds.size.height);*/
             self.frame = CGRectMake(CGRectGetMidX(self.scrollView.bounds) - (self.size.width / 2.0), y + self.affordanceMargin, self.size.width, self.size.height);
             if (self.text) {
-                self.label.frame = CGRectMake(0.0, y, self.scrollView.frame.size.width, 15.0);
+                self.label.frame = CGRectMake((-self.scrollView.bounds.size.width+self.size.width)/2.0, -20.0, self.scrollView.frame.size.width, 15.0);
                 //frame.origin.y -= 10.0;
+            }
+            if (self.frame.origin.y > 100.0) {
+                self.alpha = 1.0;
             }
             break;
         }
@@ -119,7 +123,7 @@
     }
     
     BOOL isSidePosition = (self.position == AASpringRefreshPositionLeft || self.position == AASpringRefreshPositionRight);
-    CGFloat interItemSpace = (isSidePosition ? CGRectGetWidth(self.bounds) : CGRectGetHeight(self.bounds)) / self.springExpandViews.count;
+    CGFloat interItemSpace = (isSidePosition ? 40.0 : 40.0) / self.springExpandViews.count;
     
     // layout affordance.
     NSInteger index = 0;
@@ -185,6 +189,7 @@
                 //self.label.center = center;
                 self.label.alpha = (-yOffset - self.scrollView.contentInset.top) / 40.0;
             }
+            self.alpha = (-yOffset - self.scrollView.contentInset.top) / 40.0;
             break;
         }
         case AASpringRefreshPositionBottom: {
@@ -235,6 +240,8 @@
 #pragma mark - Setter
 - (void)setProgress:(CGFloat)progress
 {
+    // minus guard.
+    progress = progress < 0 ? 0 : progress;
     _progress = progress;
     
     CGFloat progressInterval = 1.0 / self.springExpandViews.count;
