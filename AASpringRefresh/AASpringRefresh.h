@@ -10,6 +10,7 @@
 
 @interface AASpringRefresh : UIView
 
+typedef void (^actionHandler)(void);
 typedef NS_ENUM(NSUInteger, AASpringRefreshPosition) {
     AASpringRefreshPositionTop,
     AASpringRefreshPositionBottom,
