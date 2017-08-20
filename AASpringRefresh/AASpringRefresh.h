@@ -10,12 +10,16 @@
 
 @interface AASpringRefresh : UIView
 
-typedef void (^actionHandler)(void);
 typedef NS_ENUM(NSUInteger, AASpringRefreshPosition) {
     AASpringRefreshPositionTop,
     AASpringRefreshPositionBottom,
     AASpringRefreshPositionLeft,
     AASpringRefreshPositionRight,
+};
+typedef NS_ENUM(NSUInteger, AASpringRefreshState) {
+    AASpringRefreshStateUnExpanded,
+    AASpringRefreshStateExpanded,
+    AASpringRefreshStateReady,
 };
 
 @property (nonatomic, strong) UIColor *unExpandedColor; // default: gray.
@@ -29,6 +33,7 @@ typedef NS_ENUM(NSUInteger, AASpringRefreshPosition) {
 @property (nonatomic, assign) CGSize size; // to adjust expanded size and each interval space.
 @property (nonatomic, assign, getter=isShowed) BOOL showed; // dynamic show/hide affordanceView and add/remove KVO observer.
 @property (nonatomic, copy) void (^pullToRefreshHandler)(AASpringRefresh *springRefresh);
+@property (nonatomic, copy) void (^stateChangedHandler)(AASpringRefreshState state);
 @property (nonatomic, assign, readonly) CGFloat progress;
 @property (nonatomic, assign, readonly) AASpringRefreshPosition position;
 

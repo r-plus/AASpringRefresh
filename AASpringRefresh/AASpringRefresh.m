@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray *springExpandViews;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UILabel *label;
+@property (nonatomic, assign) AASpringRefreshState state;
 - (instancetype)initWithPosition:(AASpringRefreshPosition)position;
 @end
 
@@ -58,6 +59,7 @@
         _affordanceMargin = 10.0;
         _threshold = 0;
         _text = nil;
+        _state = AASpringRefreshStateUnExpanded;
         _size = (isSidePosition ? CGSizeMake(40.0, 60.0) : CGSizeMake(60.0, 40.0));
         _label = [[UILabel alloc] initWithFrame:CGRectZero];
         _label.backgroundColor = [UIColor clearColor];
@@ -257,11 +259,23 @@
         if (progress >= 1.0) {
             [springExpandView setColor:self.readyColor];
             self.label.textColor = self.readyColor;
+            if (self.isUserAction && self.stateChangedHandler && self.state != AASpringRefreshStateReady) {
+                self.state = AASpringRefreshStateReady;
+                self.stateChangedHandler(self.state);
+            }
         } else if (expanded) {
             [springExpandView setColor:self.expandedColor];
+            if (self.isUserAction && self.stateChangedHandler && self.state != AASpringRefreshStateExpanded) {
+                self.state = AASpringRefreshStateExpanded;
+                self.stateChangedHandler(self.state);
+            }
         } else {
             [springExpandView setColor:self.unExpandedColor];
             self.label.textColor = self.expandedColor;
+            if (self.isUserAction && self.stateChangedHandler && self.state != AASpringRefreshStateUnExpanded) {
+                self.state = AASpringRefreshStateUnExpanded;
+                self.stateChangedHandler(self.state);
+            }
         }
         
         [springExpandView setExpanded:expanded animated:YES];
