@@ -62,7 +62,7 @@
 
 - (void)expandAnimated:(BOOL)animated
 {
-    void (^expandBlock)() = ^void() {
+    void (^expandBlock)(void) = ^void() {
         self.stretchingView.frame = [self frameForExpandedState];
         self.expanded = YES;
     };
@@ -76,7 +76,7 @@
 
 - (void)collapseAnimated:(BOOL)animated
 {
-    void (^collapseBlock)() = ^void() {
+    void (^collapseBlock)(void) = ^void() {
         self.stretchingView.frame = [self frameForCollapsedState];
         self.expanded = NO;
     };
@@ -88,7 +88,7 @@
     }
 }
 
-- (void)performBlockInAnimation:(void(^)())blockToAnimate
+- (void)performBlockInAnimation:(void(^)(void))blockToAnimate
 {
     [UIView animateWithDuration:0.5
                           delay:0.0
